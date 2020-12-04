@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-11 15:15:40
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-04 10:32:20
+# @Last Modified time: 2020-12-04 15:05:54
 
 
 # Import the modules
@@ -35,13 +35,13 @@ hog_features = np.array(list_hog_fd, 'float64')
 
 print(np.shape(fd))
 
-# # Create an linear SVM object
-# clf = LinearSVC()
+# Create an linear SVM object
+clf = LinearSVC()
 
-# # Perform the training
-# clf.fit(hog_features, labels)
-# # Save the classifier
-# joblib.dump(clf, "digits_cls.pkl", compress=3)
+# Perform the training
+clf.fit(hog_features, labels)
+# Save the classifier
+joblib.dump(clf, "digits_cls.pkl", compress=3)
 
 # Visualize the HOG image of MNIST data
 image = features[0].reshape((28, 28))
