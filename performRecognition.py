@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-11 15:22:41
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-04 07:57:31
+# @Last Modified time: 2020-12-04 08:58:57
 
 # Import the modules
 import cv2
@@ -61,7 +61,7 @@ for rect in rects:
     cv2.imshow("normalized ROI", roi)
   
     # Calculate the HOG features
-    roi_hog_fd, hog_image = hog(roi, orientations=9, pixels_per_cell=(14, 14), cells_per_block=(1, 1), visualize=True)
+    roi_hog_fd, hog_image = hog(roi, orientations=9, pixels_per_cell=(7, 7), cells_per_block=(1, 1), visualize=True)
     # cv2.imshow("ROI HOG FD", roi_hog_fd)
     cv2.imshow("HOG IMAGE", hog_image)
 

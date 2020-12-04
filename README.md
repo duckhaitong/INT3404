@@ -8,4 +8,4 @@ The classifier has already generated and saved in: </br>
 `digits_cls.pkl`
 <br></br>
 To predict the digit in image:</br>
-`python3 performRecognition.py`
+`python3 performRecognition.py -i photo_1.jpg`
