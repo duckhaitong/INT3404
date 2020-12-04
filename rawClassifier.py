@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-17 15:25:50
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-04 10:36:09
+# @Last Modified time: 2020-12-04 11:44:49
 				
 from sklearn import datasets 		
 from sklearn.svm import LinearSVC								
@@ -18,6 +18,7 @@ dataset = datasets.fetch_openml('mnist_784', version=1)
 # Extract the features and labels
 features = np.array(dataset.data, 'int16') 
 labels = np.array(dataset.target, 'int')
+
 
 print(np.shape(features))
 print(np.shape(labels))
