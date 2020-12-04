@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-11 15:22:41
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-04 07:13:33
+# @Last Modified time: 2020-12-04 07:57:31
 
 # Import the modules
 import cv2
@@ -10,11 +10,17 @@ import joblib
 from skimage.feature import hog
 from skimage import exposure
 import numpy as np
+import argparse
+
+# construct the argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--image", required=True, help="path to image")
+args = vars(ap.parse_args())
 
 # Load the classifier
 clf = joblib.load("digits_cls.pkl")
 # Read the input image 
-im = cv2.imread('photo_4.jpg')
+im = cv2.imread(args["image"])
 
 # Convert to grayscale and apply Gaussian filtering to filter noisy pixels
 im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
