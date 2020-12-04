@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-17 15:25:50
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-04 11:44:49
+# @Last Modified time: 2020-12-04 12:52:19
 				
 from sklearn import datasets 		
 from sklearn.svm import LinearSVC								
@@ -25,7 +25,7 @@ print(np.shape(labels))
 
 
 # Create an linear SVM object
-clf = LinearSVC()
+clf = LinearSVC(dual=False)
 
 # Perform the training
 clf.fit(features, labels)
