@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-11 15:22:41
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-04 10:45:29
+# @Last Modified time: 2020-12-04 10:56:01
 
 # Import the modules
 import cv2
@@ -20,7 +20,7 @@ ap.add_argument("-i", "--image", required=True, help="path to image")
 args = vars(ap.parse_args())
 
 # Load the classifier
-clf = joblib.load("digits_cls.pkl")
+clf = joblib.load("raw_digits_cls.pkl")
 
 # Read the input image 
 im = cv2.imread(args["image"])
@@ -59,14 +59,13 @@ for rect in rects:
     # Regions of interested
     roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
 
-    # Resize the image
+    # Resize the image and create the feature to predict
     roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
-  
-    # Calculate the HOG features
-    roi_hog_fd, hog_image = hog(roi, orientations=9, pixels_per_cell=(7, 7), cells_per_block=(1, 1), visualize=True)
+    pred_feature = roi.reshape(784, ) # To flatten the image
+
 
     # Get the predicted digits
-    predicted_digits = clf.predict(np.array([roi_hog_fd], 'float64'))
+    predicted_digits = clf.predict(np.array([pred_feature], 'float64'))
     cv2.putText(im, str(int(predicted_digits[0])), (rect[0], rect[1]),cv2.FONT_HERSHEY_DUPLEX, 2, (0, 255, 255), 3)
 
 
@@ -74,15 +73,3 @@ cv2.namedWindow("Resulting Image with Rectangular ROIs", cv2.WINDOW_NORMAL)
 cv2.imshow("Resulting Image with Rectangular ROIs", im)
 cv2.waitKey()
 cv2.destroyAllWindows() 
-
-# Visualize the HOG image
-fd, hog_image = hog(im_gray, orientations=9, pixels_per_cell=(14, 14), cells_per_block=(1, 1), visualize=True)
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4), sharex=True, sharey=True)
-ax1.axis('off')
-ax1.imshow(im, cmap=plt.cm.gray)
-ax1.set_title('Input image')
-
-ax2.axis('off')
-ax2.imshow(hog_image, cmap=plt.cm.gray)
-ax2.set_title('Histogram of Oriented Gradients')
-plt.show()
