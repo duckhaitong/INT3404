@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-11 15:15:40
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-05 07:52:19
+# @Last Modified time: 2020-12-05 08:28:31
 
 
 # Import the modules
@@ -28,7 +28,7 @@ print(np.shape(features))
 # Extract the HOG features
 list_hog_fd = []
 for feature in features:
-    fd = hog(feature.reshape((28, 28)), orientations=9, pixels_per_cell=(7, 7), cells_per_block=(1, 1), block_norm="L1", visualize=False)
+    fd = hog(feature.reshape((28, 28)), orientations=9, pixels_per_cell=(7, 7), cells_per_block=(1, 1), block_norm="L2", visualize=False)
     list_hog_fd.append(fd)
 
 hog_features = np.array(list_hog_fd, 'float64')

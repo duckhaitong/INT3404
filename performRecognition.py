@@ -2,7 +2,7 @@
 # @Author: Duc Khai Tong
 # @Date:   2020-11-11 15:22:41
 # @Last modified by:   khai
-# @Last Modified time: 2020-12-05 07:52:15
+# @Last Modified time: 2020-12-05 08:28:36
 
 # Import the modules
 import cv2
@@ -63,7 +63,7 @@ for rect in rects:
     roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
   
     # Calculate the HOG features
-    roi_hog_fd, hog_image = hog(roi, orientations=9, pixels_per_cell=(7, 7), cells_per_block=(1, 1), block_norm="L1", visualize=True)
+    roi_hog_fd, hog_image = hog(roi, orientations=9, pixels_per_cell=(7, 7), cells_per_block=(1, 1), block_norm="L2", visualize=True)
 
     # Get the predicted digits
     predicted_digits = clf.predict(np.array([roi_hog_fd], 'float64'))
@@ -76,7 +76,7 @@ cv2.waitKey()
 cv2.destroyAllWindows() 
 
 # Visualize the HOG image
-fd, hog_image = hog(im_gray, orientations=9, pixels_per_cell=(14, 14), cells_per_block=(1, 1), block_norm="L1", visualize=True)
+fd, hog_image = hog(im_gray, orientations=9, pixels_per_cell=(7, 7), cells_per_block=(1, 1), block_norm="L1", visualize=True)
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4), sharex=True, sharey=True)
 ax1.axis('off')
 ax1.imshow(im, cmap=plt.cm.gray)
